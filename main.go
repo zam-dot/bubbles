@@ -1111,59 +1111,6 @@ func (m *model) handleError(msg errorMsg) (tea.Model, tea.Cmd) {
 	return m, nil
 }
 
-/*
-	func (m *model) openImageExternally(imageURL string) tea.Cmd {
-		return func() tea.Msg {
-			// Clean the URL again just in case
-			cleanURL := strings.ReplaceAll(imageURL, "\n", "")
-			cleanURL = strings.ReplaceAll(cleanURL, "\r", "")
-			cleanURL = strings.Join(strings.Fields(cleanURL), "")
-
-			log.Printf("Opening image: %s", cleanURL) // Debug
-
-			var cmd *exec.Cmd
-			switch runtime.GOOS {
-			case "darwin": // macOS
-				cmd = exec.Command("open", cleanURL)
-			case "windows": // Windows
-				cmd = exec.Command("cmd", "/c", "start", cleanURL)
-			default: // Linux and others
-				cmd = exec.Command("xdg-open", cleanURL)
-			}
-
-			if err := cmd.Start(); err != nil {
-				return errorMsg{err: fmt.Errorf("failed to open image: %v", err)}
-			}
-			return nil
-		}
-	}
-
-	func (m *model) openImageExternally(imageURL string) tea.Cmd {
-		return func() tea.Msg {
-			// Try these viewers in order
-			viewers := []string{
-				"xdg-open", // Default system viewer
-				"feh",      // Lightweight image viewer
-				"imv",      // Another image viewer
-				"gpicview", // Simple image viewer
-				"eog",      // Eye of GNOME
-				"gimp",     // GIMP (heavy but works)
-			}
-
-			var err error
-			for _, viewer := range viewers {
-				cmd := exec.Command(viewer, imageURL)
-				err = cmd.Start()
-				if err == nil {
-					log.Printf("Opened image with: %s", viewer)
-					return nil
-				}
-			}
-
-			return errorMsg{err: fmt.Errorf("failed to open image with any viewer: %v", err)}
-		}
-	}
-*/
 func (m *model) openImageExternally(imageURL string) tea.Cmd {
 	return func() tea.Msg {
 		var cmd *exec.Cmd

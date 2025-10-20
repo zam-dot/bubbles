@@ -78,7 +78,7 @@ type Tab struct {
 	URL        string
 	Content    string
 	Links      []Link
-	Images     []ImageInfo // ADD THIS
+	Images     []ImageInfo
 	ReaderMode bool
 	History    []string
 	CurrentPos int
@@ -1971,9 +1971,10 @@ func (m *model) Init() tea.Cmd {
 }
 
 func main() {
-	config := ParseFlags() // Call ParseFlags ONLY here
-
-	m := InitialModel(config) // Pass config to InitialModel
+	// Call ParseFlags ONLY here
+	config := ParseFlags()
+	// Pass config to InitialModel
+	m := InitialModel(config)
 
 	// Update tea program initialization with mouse support based on config
 	opts := []tea.ProgramOption{

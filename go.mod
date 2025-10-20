@@ -1,4 +1,4 @@
-module github.com/zam-dot/bubbles/tree/main
+module bubbles
 
 go 1.25.2
 

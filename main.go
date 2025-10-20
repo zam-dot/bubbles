@@ -103,7 +103,7 @@ type ImageInfo struct {
 	AltText  string
 	Type     string
 	IsLinked bool
-	LinkURL  string // NEW: Where the image links to
+	LinkURL  string
 }
 
 type model struct {
@@ -116,7 +116,7 @@ type model struct {
 	activeTab     int
 	links         []Link
 	images        []ImageInfo
-	showImages    bool // ADD THIS LINE
+	showImages    bool
 	showHistory   bool
 	bookmarks     []Bookmark
 	showBookmarks bool
@@ -127,13 +127,13 @@ type model struct {
 	readerMode    bool
 	status        StatusInfo
 	config        Config
-	currentImage  *ImageInfo // ADD THIS LINE - for tracking which image is being viewed
+	currentImage  *ImageInfo
 }
 
 type fetchContentMsg struct {
 	content    string
 	links      []Link
-	images     []ImageInfo // ADD THIS
+	images     []ImageInfo
 	tabID      int
 	loadTime   time.Duration
 	pageSize   int
@@ -1137,7 +1137,6 @@ func (m *model) openImageExternally(imageURL string) tea.Cmd {
 			}
 			return errorMsg{err: fmt.Errorf("failed to open image with any viewer")}
 		}
-
 		return nil
 	}
 }
@@ -1350,18 +1349,9 @@ func (m *model) View() string {
 		m.urlInput.View(),
 		"",
 		m.viewport.View(),
-		m.renderStatusPanel(), // NEW: Status panel at the bottom
+		m.renderStatusPanel(),
 	)
 }
-
-// [Include all the other existing functions from previous phases...]
-// extractReaderContent, isNavigationText, shouldIncludeLink,
-// loadBookmarks, saveBookmarks, isBookmarked, addBookmark,
-// renderHistory, renderBookmarks, renderSearchResults,
-// performSearch, extractContentWithLinks, resolveURL,
-// fetchHTML, renderWithStyle, and main
-
-// Note: Copy all the reader mode and content extraction functions from phase 10
 
 func (m *model) renderImages() string {
 	if len(m.images) == 0 {

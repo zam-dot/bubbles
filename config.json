@@ -1,0 +1,11 @@
+{
+  "enable_reader_mode": true,
+  "enable_bookmarks": true,
+  "enable_history": true,
+  "enable_search": true,
+  "enable_tabs": true,
+  "enable_status_panel": true,
+  "max_tabs": 5,
+  "page_cache_size": 50,
+  "enable_mouse_support": true
+}
